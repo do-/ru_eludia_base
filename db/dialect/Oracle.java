@@ -150,23 +150,28 @@ public final class Oracle extends ANSI {
     
     protected String getTypeName (PhysicalCol col) {
 
-        switch (col.getType ()) {
-            case BLOB:
-                return "BLOB";
-            case CLOB:
-                return "CLOB";
-            case DATE:
-                return "DATE";
-            case NUMERIC:
-                return "NUMBER";
-            case VARCHAR:
-                return "VARCHAR2";
-            case TIMESTAMP:
-                return "TIMESTAMP";
-            case VARBINARY:
-                return "RAW";
-            default:
-                throw new IllegalArgumentException ("Not supported: " + col);
+        try {
+            switch (col.getType ()) {
+                case BLOB:
+                    return "BLOB";
+                case CLOB:
+                    return "CLOB";
+                case DATE:
+                    return "DATE";
+                case NUMERIC:
+                    return "NUMBER";
+                case VARCHAR:
+                    return "VARCHAR2";
+                case TIMESTAMP:
+                    return "TIMESTAMP";
+                case VARBINARY:
+                    return "RAW";
+                default:
+                    throw new IllegalArgumentException ("Not supported: " + col);
+            }
+        } catch (Exception ex) {
+            logger.log (Level.WARNING, "COL: " + col.toString ());
+            throw new IllegalStateException ("getTypeNameException: " + ex.getLocalizedMessage ());
         }
 
     }
