@@ -202,7 +202,9 @@ public class Col extends AbstractCol implements Cloneable {
     }
     
     public void appendDefinitionTo (JsonObjectBuilder job) {
-        job.add ("TYPE", type.name ().toLowerCase ());
+        final String t = type.name ().toLowerCase ();
+        job.add ("TYPE", t);
+        job.add ("TYPE_NAME", t);
         job.add ("REMARK", remark);
         if (length > 0) job.add ("COLUMN_SIZE", length);
         if (precision > 0) job.add ("DECIMAL_DIGITS", precision);
