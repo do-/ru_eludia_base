@@ -193,6 +193,10 @@ public abstract class ANSI extends DB {
                 st.setNull (n, Types.BLOB);
                 break;
 
+            case CLOB:
+                st.setNull (n, Types.CLOB);
+                break;
+
             default: 
                 logger.warning ("Setting OTHER NULL for :" + n);
                 st.setNull (n, Types.OTHER);
